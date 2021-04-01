@@ -20,8 +20,9 @@ def bollinger_band(data, n_lookback, n_std):
     lower = mean - n_std*std
     return upper, lower
 
+# DataFeed
 def update_df(df):
-    upper, lower = bollinger_band(df, 20, 2)
+    upper, lower = bollinger_band(df, 20, 1.5)
 
     df['ma10'] = df.close.rolling(10).mean()
     df['ma20'] = df.close.rolling(20).mean()
@@ -48,12 +49,18 @@ def get_X(data):
 
 def get_y(data):
     # use price change in the future 2 days as training label
-    y = data.close.pct_change(PRED_DAYS).shift(-PRED_DAYS)  
-    y[y.between(-PCT_CHANGE, PCT_CHANGE)] = 0             
-    y[y > 0] = 1
-    y[y < 0] = -1
+    # -1 -- change  > -4%
+    # 0 -- change is betweeen -4% & +4%
+    # 1 -- change is > +4%
+    print("what is in y?")
+    y = data.close.pct_change(PRED_DAYS).shift(-PRED_DAYS)
+    print(y.between(-PCT_CHANGE, PCT_CHANGE))
+    y[y.between(-PCT_CHANGE, PCT_CHANGE)] = 0 
+    print(y)            
+    y[y > 0] = 1 # Green
+    y[y < 0] = -1 # Red
+    print(y)
     return y
-
 
 def get_clean_Xy(df):
     X = get_X(df)
@@ -64,19 +71,23 @@ def get_clean_Xy(df):
     return X, y
 
 class MLStrategy(aio.Strategy):
-    num_pre_train = 300
+    num_pre_train = 500
 
     def initialize(self):
         '''
         Model training step
         '''
-
         self.info('initialize')
-        self.code = 'XRP/USDT'
+        self.code = 'ENJ/USDT'
+
+        # unwrap csv data for trading pair
         df = self.ctx.feed[self.code]
+
         self.ctx.feed[self.code] = update_df(df)
 
         self.y = get_y(df[self.num_pre_train-1:])
+
+        # Status for each candle
         self.y_true = self.y.values
 
         self.clf = KNeighborsClassifier(7)
@@ -135,8 +146,8 @@ class MLStrategy(aio.Strategy):
         if forecast == 1 and not self.ctx.get_position(self.code):
             o1 = self.order_amount(code=self.code,amount=200000,side=SideType.BUY, asset_type='Crypto')
             self.info(f"BUY order {o1['id']} created #{o1['quantity']} @ {close:2f}")
-            osl = self.sell(code=self.code,quantity=o1['quantity'], price=lower, stop_price=lower, asset_type='Crypto')
-            self.info(f"STOPLOSS order {osl['id']} created #{osl['quantity']} @ {lower:2f}")
+            # osl = self.sell(code=self.code,quantity=o1['quantity'], price=lower, stop_price=lower, asset_type='Crypto')
+            # self.info(f"STOPLOSS order {osl['id']} created #{osl['quantity']} @ {lower:2f}")
             
         elif forecast == -1 and self.ctx.get_position(self.code):
             o2 = self.order_amount(code=self.code,amount=200000,side=SideType.SELL, price=upper, asset_type='Crypto',ioc=True)
@@ -150,14 +161,14 @@ if __name__ == '__main__':
 
     base = create_report_folder()
 
-    start_date = '2020-12-01'
+    start_date = '2021-03-01'
     end_date = '2021-03-12'
 
     sdf = aio.CryptoDataFeed(
-        symbols=['XRP/USDT', 'BTC/USDT'], 
+        symbols=['ENJ/USDT', 'BTC/USDT'], 
         start_date=start_date, 
         end_date=end_date,  
-        interval='4h', 
+        interval='15m', 
         order_ascending=True, 
         store_path=base
     )
@@ -177,4 +188,22 @@ if __name__ == '__main__':
     )
 
     mytest.start()
+
+    # Strategy
+    prefix = ''
+    stats = mytest.ctx.statistic.stats(pprint=True, annualization=252, risk_free=0.0442)
+    '''
+    Model evaluation step
+    '''
+    stats['model_name'] = 'Simple KNN Signal Generation Strategy'
+    stats['algorithm'] = ['KNN', 'Simple Moving Average', 'Bollinger Band']
+    stats['model_measures'] = ['f1-score','accuracy']
+    ytrue = mytest.ctx.strategy.y_true[:-PRED_DAYS]
+    ypred = mytest.ctx.strategy.y_pred[:-PRED_DAYS]
+    # print("ytrue length: ", len(ytrue), "ypred length: ", len(ypred), ytrue, ypred)
+    stats['f1-score'] = f1_score(ytrue, ypred,average='weighted')
+    stats['accuracy'] = accuracy_score(ytrue, ypred)
+    print(stats)
+
+    mytest.contest_output()
 
