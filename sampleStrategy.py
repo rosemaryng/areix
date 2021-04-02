@@ -19,29 +19,73 @@ def bollinger_band(data, n_lookback, n_std):
     upper = mean + n_std*std
     lower = mean - n_std*std
     return upper, lower
+def computeRSI(data, time_window):
+    diff = data.diff(1).dropna()        # diff in one field(one day)
+
+    #this preservers dimensions off diff values
+    up_chg = 0 * diff
+    down_chg = 0 * diff
+    
+    # up change is equal to the positive difference, otherwise equal to zero
+    up_chg[diff > 0] = diff[ diff>0 ]
+    
+    # down change is equal to negative deifference, otherwise equal to zero
+    down_chg[diff < 0] = diff[ diff < 0 ]
+    
+    # check pandas documentation for ewm
+    # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.ewm.html
+    # values are related to exponential decay
+    # we set com=time_window-1 so we get decay alpha=1/time_window
+    up_chg_avg   = up_chg.ewm(com=time_window-1 , min_periods=time_window).mean()
+    down_chg_avg = down_chg.ewm(com=time_window-1 , min_periods=time_window).mean()
+    
+    rs = abs(up_chg_avg/down_chg_avg)
+    rsi = 100 - 100/(1+rs)
+    return rsi
+
+def stochastic(data, k_window, d_window, window):
+    
+    # input to function is one column from df
+    # containing closing price or whatever value we want to extract K and D from
+    
+    min_val  = data.rolling(window=window, center=False).min()
+    max_val = data.rolling(window=window, center=False).max()
+    
+    stoch = ( (data - min_val) / (max_val - min_val) ) * 100
+    
+    K = stoch.rolling(window=k_window, center=False).mean() 
+    #K = stoch
+    
+    D = K.rolling(window=d_window, center=False).mean() 
+
+    return K, D
 
 # DataFeed
 def update_df(df):
-    upper, lower = bollinger_band(df, 20, 1.5)
+    # upper, lower = bollinger_band(df, 20, 1.5)
 
-    df['ma10'] = df.close.rolling(10).mean()
-    df['ma20'] = df.close.rolling(20).mean()
-    df['ma50'] = df.close.rolling(50).mean()
-    df['ma100'] = df.close.rolling(100).mean()
+    # df['ma10'] = df.close.rolling(10).mean()
+    # df['ma20'] = df.close.rolling(20).mean()
+    # df['ma50'] = df.close.rolling(50).mean()
+    # df['ma100'] = df.close.rolling(100).mean()
 
-    df['x_ma10'] = (df.close - df.ma10) / df.close
-    df['x_ma20'] = (df.close - df.ma20) / df.close
-    df['x_ma50'] = (df.close - df.ma50) / df.close
-    df['x_ma100'] = (df.close - df.ma100) / df.close
+    # df['x_ma10'] = (df.close - df.ma10) / df.close
+    # df['x_ma20'] = (df.close - df.ma20) / df.close
+    # df['x_ma50'] = (df.close - df.ma50) / df.close
+    # df['x_ma100'] = (df.close - df.ma100) / df.close
 
-    df['x_delta_10'] = (df.ma10 - df.ma20) / df.close
-    df['x_delta_20'] = (df.ma20 - df.ma50) / df.close
-    df['x_delta_50'] = (df.ma50 - df.ma100) / df.close
+    # df['x_delta_10'] = (df.ma10 - df.ma20) / df.close
+    # df['x_delta_20'] = (df.ma20 - df.ma50) / df.close
+    # df['x_delta_50'] = (df.ma50 - df.ma100) / df.close
 
-    df['x_mom'] = df.close.pct_change(periods=2)
-    df['x_bb_upper'] = (upper - df.close) / df.close
-    df['x_bb_lower'] = (lower - df.close) / df.close
-    df['x_bb_width'] = (upper - lower) / df.close
+    # df['x_mom'] = df.close.pct_change(periods=2)
+    # df['x_bb_upper'] = (upper - df.close) / df.close
+    # df['x_bb_lower'] = (lower - df.close) / df.close
+    # df['x_bb_width'] = (upper - lower) / df.close
+
+    # StochRSI update method
+    df['RSI'] = computeRSI(df.close, 14)
+    df['K'], df['D'] = stochastic(df['RSI'], 3, 3, 14)
     return df
 
 def get_X(data):
@@ -52,14 +96,10 @@ def get_y(data):
     # -1 -- change  > -4%
     # 0 -- change is betweeen -4% & +4%
     # 1 -- change is > +4%
-    print("what is in y?")
     y = data.close.pct_change(PRED_DAYS).shift(-PRED_DAYS)
-    print(y.between(-PCT_CHANGE, PCT_CHANGE))
     y[y.between(-PCT_CHANGE, PCT_CHANGE)] = 0 
-    print(y)            
     y[y > 0] = 1 # Green
     y[y < 0] = -1 # Red
-    print(y)
     return y
 
 def get_clean_Xy(df):
@@ -70,8 +110,11 @@ def get_clean_Xy(df):
     y = y[~isnan]
     return X, y
 
+
+
+
 class MLStrategy(aio.Strategy):
-    num_pre_train = 500
+    num_pre_train = 800
 
     def initialize(self):
         '''
@@ -83,17 +126,41 @@ class MLStrategy(aio.Strategy):
         # unwrap csv data for trading pair
         df = self.ctx.feed[self.code]
 
+        print("df before update with stockrsi")
+        print(df)
+        
         self.ctx.feed[self.code] = update_df(df)
 
-        self.y = get_y(df[self.num_pre_train-1:])
+        print("updated df")
+        print(self.ctx.feed[self.code])
 
+        training_set = df[:self.num_pre_train]
+        test_set = df[self.num_pre_train:]
+
+        # Test set for validation
+        self.y = get_y(test_set)
+        print("training set")
+        print(self.y)
         # Status for each candle
         self.y_true = self.y.values
+        print("self.y_true")
+        print(len(self.y_true)) #length here is 552?
 
-        self.clf = KNeighborsClassifier(7)
+        self.clf = KNeighborsClassifier(10)
         
         tmp = df.dropna().astype(float)
-        X, y = get_clean_Xy(tmp[:self.num_pre_train])
+        # print("tmp")
+        # print(tmp)
+        # test_set = tmp[:self.num_pre_train]
+
+        # Get the first num_pre_train rows of data for training
+        # y is the -1/0/1
+        X, y = get_clean_Xy(training_set)
+
+        print("X")
+        print(X)
+        print("y")
+        print(y)
         self.clf.fit(X, y)
 
         self.y_pred = []
@@ -140,9 +207,9 @@ class MLStrategy(aio.Strategy):
         self.ctx.cplot(forecast,'Forcast')
         self.ctx.cplot(self.y[tick],'Groundtruth')
         # self.info(f"focasing result: {forecast}")
-
         upper, lower = close * (1 + np.r_[1, -1]*PCT_CHANGE)
 
+        # Buy sell instruction
         if forecast == 1 and not self.ctx.get_position(self.code):
             o1 = self.order_amount(code=self.code,amount=200000,side=SideType.BUY, asset_type='Crypto')
             self.info(f"BUY order {o1['id']} created #{o1['quantity']} @ {close:2f}")
