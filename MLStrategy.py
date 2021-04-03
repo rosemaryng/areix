@@ -180,7 +180,7 @@ if __name__ == '__main__':
     base = create_report_folder()
 
     start_date = '2021-03-01'
-    end_date = '2021-03-12'
+    end_date = '2021-04-15'
 
     sdf = aio.CryptoDataFeed(
         symbols=['ENJ/USDT', 'BTC/USDT'], 

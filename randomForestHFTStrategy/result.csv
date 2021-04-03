@@ -1,0 +1,61 @@
+,value
+start,2021-03-01 00:00:00+08:00
+end,2021-04-03 16:30:00+08:00
+duration,33 days 16:30:00
+beginning_balance,55800
+ending_balance,231952.551442
+total_net_profit,176152.551442
+gross_profit,1013265.2458220002
+gross_loss,-837112.6943800002
+profit_factor,1.2104287184086555
+return_on_initial_capital,3.156855760609319
+annualized_return,0.037815137270159394
+total_return,3.156855760609319
+max_return,3.2873872767562724
+min_return,-0.0014131389426525257
+number_trades,740
+number_winning_trades,319
+number_losing_trades,133
+avg_daily_trades,46.25
+avg_weekly_trades,185.0
+avg_monthly_trades,370.0
+win_ratio,0.43108108108108106
+loss_ratio,0.17972972972972973
+win_days,17
+loss_days,5
+max_win_in_day,33477.672444
+max_loss_in_day,-7354.934723
+max_consecutive_win_days,18
+max_consecutive_loss_days,2
+avg_profit_per_trade,357.2361993510553
+trading_period,0 years 1 months 2 days
+avg_daily_pnl($),18.212629388130686
+avg_daily_pnl,0.0001529952804280958
+avg_weekly_pnl($),44038.1378605
+avg_weekly_pnl,0.4484043169717506
+avg_monthly_pnl($),3360.8793510000105
+avg_monthly_pnl,0.014702545023871583
+avg_quarterly_pnl($),3360.8793510000105
+avg_quarterly_pnl,0.014702545023871583
+avg_annualy_pnl($),
+avg_annualy_pnl,
+sharpe_ratio,-0.10534412576975269
+sortino_ratio,1.1889746288107392
+annualized_volatility,0.053590849466364485
+omega_ratio,0.0
+downside_risk,0.03242694144486853
+information_ratio,0.033143357175689114
+beta,0.330253259571755
+alpha,-0.9994662044184209
+calmar_ratio,0.2706059164624589
+tail_ratio,1.3110494196208786
+stability_of_timeseries,0.9231329577297035
+max_drawdown,0.13974246300488954
+max_drawdown_period,"(Timestamp('2021-03-22 02:25:00+0800', tz='Asia/Hong_Kong'), Timestamp('2021-03-23 06:20:00+0800', tz='Asia/Hong_Kong'))"
+max_drawdown_duration,1 days 03:55:00
+sqn,3.935268838911046
+model_name,Random Forest Classifier
+algorithm,"['RFC', 'Simple Moving Average', 'Bollinger Band', 'StochRSI', 'MFI']"
+model_measures,"['f1-score', 'accuracy']"
+f1-score,0.4242986205078034
+accuracy,0.4170447180816591
