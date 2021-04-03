@@ -1,0 +1,61 @@
+,value
+start,2021-03-01 00:00:00+08:00
+end,2021-04-03 15:25:00+08:00
+duration,33 days 15:25:00
+beginning_balance,200000
+ending_balance,491392.621608
+total_net_profit,291392.621608
+gross_profit,2565441.1784450007
+gross_loss,-2274048.5568370004
+profit_factor,1.1281382584078599
+return_on_initial_capital,1.45696310804
+annualized_return,0.023727364459927403
+total_return,1.45696310804
+max_return,1.60363158287
+min_return,-0.000998999979999935
+number_trades,622
+number_winning_trades,272
+number_losing_trades,106
+avg_daily_trades,38.875
+avg_weekly_trades,155.5
+avg_monthly_trades,311.0
+win_ratio,0.43729903536977494
+loss_ratio,0.17041800643086816
+win_days,16
+loss_days,5
+max_win_in_day,168237.377345
+max_loss_in_day,-31331.474087
+max_consecutive_win_days,18
+max_consecutive_loss_days,2
+avg_profit_per_trade,857.969249685962
+trading_period,0 years 1 months 2 days
+avg_daily_pnl($),30.167990641681335
+avg_daily_pnl,9.83918140043366e-05
+avg_weekly_pnl($),72848.155402
+avg_weekly_pnl,0.3300204609917782
+avg_monthly_pnl($),-5772.458817999985
+avg_monthly_pnl,-0.01161074871359391
+avg_quarterly_pnl($),-5772.458817999985
+avg_quarterly_pnl,-0.01161074871359391
+avg_annualy_pnl($),
+avg_annualy_pnl,
+sharpe_ratio,-0.3744427869840379
+sortino_ratio,0.7454753022564723
+annualized_volatility,0.051827056470763536
+omega_ratio,0.0
+downside_risk,0.03326030661786093
+information_ratio,0.018836642308023156
+beta,0.3479002477344776
+alpha,-0.9993557385559326
+calmar_ratio,0.13478090271771384
+tail_ratio,1.2028099218128152
+stability_of_timeseries,0.8375178956914756
+max_drawdown,0.17604396454905913
+max_drawdown_period,"(Timestamp('2021-03-21 23:40:00+0800', tz='Asia/Shanghai'), Timestamp('2021-03-24 22:20:00+0800', tz='Asia/Shanghai'))"
+max_drawdown_duration,2 days 22:40:00
+sqn,2.339034175163759
+model_name,Random Forest Classifier
+algorithm,"['RFC', 'Simple Moving Average', 'Bollinger Band', 'StochRSI', 'MFI']"
+model_measures,"['f1-score', 'accuracy']"
+f1-score,0.43012410944591983
+accuracy,0.42357306944689876

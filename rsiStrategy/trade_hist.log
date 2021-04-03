@@ -1,0 +1,59 @@
+2021-03-01 00:00:00+08:00 - [INFO]: initialize
+2021-03-01 06:00:00+08:00 - [INFO]: BUY order 1 created #477899.4 
+2021-03-01 06:00:00+08:00 - [INFO]: BUY order 1 (MARKET) executed #477899.4 XRP/USDT @ $0.418080; Commission: $199.800181; Available Cash: $0.018667; Position: #477899.4; Gross P&L : $0; Net P&L : $-199.800181
+2021-03-01 09:00:00+08:00 - [INFO]: SELL order 2 created #465365.8 
+2021-03-01 09:00:00+08:00 - [INFO]: SELL order 2 (MARKET) executed #465365.8 XRP/USDT @ $0.429340; Commission: $199.800153; Available Cash: $199600.371086; Position: #12533.6; Gross P&L : $5240.018907999996; Net P&L : $5040.218754999996
+2021-03-01 09:00:00+08:00 - [INFO]: Trade closed, pnl: 5240.018907999996========
+2021-03-01 18:15:00+08:00 - [INFO]: BUY order 3 created #458909.9 
+2021-03-01 18:15:00+08:00 - [INFO]: BUY order 3 (MARKET) executed #458909.9 XRP/USDT @ $0.434510; Commission: $199.400941; Available Cash: $0.029496; Position: #471443.5; Gross P&L : $0; Net P&L : $-199.400941
+2021-03-01 21:45:00+08:00 - [INFO]: SELL order 4 created #451750.4 
+2021-03-01 21:45:00+08:00 - [INFO]: SELL order 4 (MARKET) executed #451750.4 XRP/USDT @ $0.442280; Commission: $199.800167; Available Cash: $199600.396241; Position: #19693.1; Gross P&L : $3707.515532800009; Net P&L : $3507.7153658000093
+2021-03-01 21:45:00+08:00 - [INFO]: Trade closed, pnl: 3707.515532800009========
+2021-03-02 03:45:00+08:00 - [INFO]: BUY order 5 created #453173.7 
+2021-03-02 03:45:00+08:00 - [INFO]: BUY order 5 (MARKET) executed #453173.7 XRP/USDT @ $0.440010; Commission: $199.40096; Available Cash: $0.035544; Position: #472866.8; Gross P&L : $0; Net P&L : $-199.40096
+2021-03-02 09:00:00+08:00 - [INFO]: SELL order 6 created #449110.2 
+2021-03-02 09:00:00+08:00 - [INFO]: SELL order 6 (MARKET) executed #449110.2 XRP/USDT @ $0.444880; Commission: $199.800146; Available Cash: $199600.381174; Position: #23756.6; Gross P&L : $2298.0968933999925; Net P&L : $2098.2967473999925
+2021-03-02 09:00:00+08:00 - [INFO]: Trade closed, pnl: 2298.0968933999925========
+2021-03-02 15:45:00+08:00 - [INFO]: BUY order 7 created #451317.2 
+2021-03-02 15:45:00+08:00 - [INFO]: BUY order 7 (MARKET) executed #451317.2 XRP/USDT @ $0.441820; Commission: $199.400965; Available Cash: $0.014905; Position: #475073.8; Gross P&L : $0; Net P&L : $-199.400965
+2021-03-03 17:00:00+08:00 - [INFO]: SELL order 8 created #440894.5 
+2021-03-03 17:00:00+08:00 - [INFO]: SELL order 8 (MARKET) executed #440894.5 XRP/USDT @ $0.453170; Commission: $199.800161; Available Cash: $199600.375309; Position: #34179.3; Gross P&L : $5049.564708499996; Net P&L : $4849.764547499996
+2021-03-03 17:00:00+08:00 - [INFO]: Trade closed, pnl: 5049.564708499996========
+2021-03-04 09:45:00+08:00 - [INFO]: BUY order 9 created #443408.8 
+2021-03-04 09:45:00+08:00 - [INFO]: BUY order 9 (MARKET) executed #443408.8 XRP/USDT @ $0.449700; Commission: $199.400937; Available Cash: $0.037012; Position: #477588.1; Gross P&L : $0; Net P&L : $-199.400937
+2021-03-04 14:30:00+08:00 - [INFO]: SELL order 10 created #436702.5 
+2021-03-04 14:30:00+08:00 - [INFO]: SELL order 10 (MARKET) executed #436702.5 XRP/USDT @ $0.457520; Commission: $199.800128; Available Cash: $199600.364684; Position: #40885.6; Gross P&L : $3664.370677499992; Net P&L : $3464.570549499992
+2021-03-04 14:30:00+08:00 - [INFO]: Trade closed, pnl: 3664.370677499992========
+2021-03-05 01:00:00+08:00 - [INFO]: BUY order 11 created #443280.7 
+2021-03-05 01:00:00+08:00 - [INFO]: BUY order 11 (MARKET) executed #443280.7 XRP/USDT @ $0.449830; Commission: $199.400957; Available Cash: $0.006446; Position: #484166.3; Gross P&L : $0; Net P&L : $-199.400957
+2021-03-05 04:00:00+08:00 - [INFO]: SELL order 12 created #431739.0 
+2021-03-05 04:00:00+08:00 - [INFO]: SELL order 12 (MARKET) executed #431739.0 XRP/USDT @ $0.462780; Commission: $199.800174; Available Cash: $199600.380692; Position: #52427.3; Gross P&L : $5616.4926510000205; Net P&L : $5416.6924770000205
+2021-03-05 04:00:00+08:00 - [INFO]: Trade closed, pnl: 5616.4926510000205========
+2021-03-05 07:15:00+08:00 - [INFO]: BUY order 13 created #436909.1 
+2021-03-05 07:15:00+08:00 - [INFO]: BUY order 13 (MARKET) executed #436909.1 XRP/USDT @ $0.456390; Commission: $199.400944; Available Cash: $0.035599; Position: #489336.4; Gross P&L : $0; Net P&L : $-199.400944
+2021-03-05 19:30:00+08:00 - [INFO]: SELL order 14 created #435417.7 
+2021-03-05 19:30:00+08:00 - [INFO]: SELL order 14 (MARKET) executed #435417.7 XRP/USDT @ $0.458870; Commission: $199.80012; Available Cash: $199600.355478; Position: #53918.7; Gross P&L : $1388.547045299999; Net P&L : $1188.746925299999
+2021-03-05 19:30:00+08:00 - [INFO]: Trade closed, pnl: 1388.547045299999========
+2021-03-05 23:45:00+08:00 - [INFO]: BUY order 15 created #438658.4 
+2021-03-05 23:45:00+08:00 - [INFO]: BUY order 15 (MARKET) executed #438658.4 XRP/USDT @ $0.454570; Commission: $199.400949; Available Cash: $0.005641; Position: #492577.1; Gross P&L : $0; Net P&L : $-199.400949
+2021-03-06 17:30:00+08:00 - [INFO]: SELL order 16 created #436130.6 
+2021-03-06 17:30:00+08:00 - [INFO]: SELL order 16 (MARKET) executed #436130.6 XRP/USDT @ $0.458120; Commission: $199.80015; Available Cash: $199600.355963; Position: #56446.5; Gross P&L : $1495.0556968000183; Net P&L : $1295.2555468000182
+2021-03-06 17:30:00+08:00 - [INFO]: Trade closed, pnl: 1495.0556968000183========
+2021-03-06 20:00:00+08:00 - [INFO]: BUY order 17 created #434481.5 
+2021-03-06 20:00:00+08:00 - [INFO]: BUY order 17 (MARKET) executed #434481.5 XRP/USDT @ $0.458940; Commission: $199.40094; Available Cash: $0.015413; Position: #490928.0; Gross P&L : $0; Net P&L : $-199.40094
+2021-03-06 23:00:00+08:00 - [INFO]: SELL order 18 created #431991.0 
+2021-03-06 23:00:00+08:00 - [INFO]: SELL order 18 (MARKET) executed #431991.0 XRP/USDT @ $0.462510; Commission: $199.800157; Available Cash: $199600.372666; Position: #58937.0; Gross P&L : $1753.0194779999786; Net P&L : $1553.2193209999787
+2021-03-06 23:00:00+08:00 - [INFO]: Trade closed, pnl: 1753.0194779999786========
+2021-03-07 03:45:00+08:00 - [INFO]: BUY order 19 created #432211.9 
+2021-03-07 03:45:00+08:00 - [INFO]: BUY order 19 (MARKET) executed #432211.9 XRP/USDT @ $0.461350; Commission: $199.40096; Available Cash: $0.011641; Position: #491148.9; Gross P&L : $0; Net P&L : $-199.40096
+2021-03-07 16:45:00+08:00 - [INFO]: SELL order 20 created #429585.4 
+2021-03-07 16:45:00+08:00 - [INFO]: SELL order 20 (MARKET) executed #429585.4 XRP/USDT @ $0.465100; Commission: $199.80017; Available Cash: $199600.381011; Position: #61563.5; Gross P&L : $1760.440969199996; Net P&L : $1560.640799199996
+2021-03-07 16:45:00+08:00 - [INFO]: Trade closed, pnl: 1760.440969199996========
+2021-03-08 03:00:00+08:00 - [INFO]: BUY order 21 created #429280.9 
+2021-03-08 03:00:00+08:00 - [INFO]: BUY order 21 (MARKET) executed #429280.9 XRP/USDT @ $0.464500; Commission: $199.400978; Available Cash: $0.001983; Position: #490844.4; Gross P&L : $0; Net P&L : $-199.400978
+2021-03-08 17:45:00+08:00 - [INFO]: SELL order 22 created #416893.1 
+2021-03-08 17:45:00+08:00 - [INFO]: SELL order 22 (MARKET) executed #416893.1 XRP/USDT @ $0.479260; Commission: $199.800187; Available Cash: $199600.388902; Position: #73951.3; Gross P&L : $6336.358226900007; Net P&L : $6136.558039900007
+2021-03-08 17:45:00+08:00 - [INFO]: Trade closed, pnl: 6336.358226900007========
+2021-03-09 07:00:00+08:00 - [INFO]: BUY order 23 created #415895.2 
+2021-03-09 07:00:00+08:00 - [INFO]: BUY order 23 (MARKET) executed #415895.2 XRP/USDT @ $0.479450; Commission: $199.400954; Available Cash: $0.034308; Position: #489846.5; Gross P&L : $0; Net P&L : $-199.400954
+2021-03-12 00:00:00+08:00 - [INFO]: finish

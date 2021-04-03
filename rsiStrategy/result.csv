@@ -1,0 +1,56 @@
+,value
+start,2021-03-01 00:00:00+08:00
+end,2021-03-12 00:00:00+08:00
+duration,11 days 00:00:00
+beginning_balance,200000
+ending_balance,220519.131678
+total_net_profit,20519.131678000005
+gross_profit,267837.82688499964
+gross_loss,-247318.69520699963
+profit_factor,1.0829663590972207
+return_on_initial_capital,0.10259565839000002
+annualized_return,0.023694148428738293
+total_return,0.10259565839000002
+max_return,0.19089049001499997
+min_return,-0.004535456464999879
+number_trades,23
+number_winning_trades,11
+number_losing_trades,0
+avg_daily_trades,3.2857142857142856
+avg_weekly_trades,11.5
+avg_monthly_trades,23.0
+win_ratio,0.4782608695652174
+loss_ratio,0.0
+win_days,8
+loss_days,4
+max_win_in_day,9170.007392
+max_loss_in_day,-11437.915775
+max_consecutive_win_days,7
+max_consecutive_loss_days,3
+avg_profit_per_trade,1667.059964217392
+trading_period,0 years 0 months 11 days
+avg_daily_pnl($),19.542030169523816
+avg_daily_pnl,0.0001009359666927469
+avg_weekly_pnl($),-7743.983662999992
+avg_weekly_pnl,-0.033925689883936516
+avg_monthly_pnl($),
+avg_monthly_pnl,
+avg_quarterly_pnl($),
+avg_quarterly_pnl,
+avg_annualy_pnl($),
+avg_annualy_pnl,
+sharpe_ratio,-0.2967162091053065
+sortino_ratio,0.5971440640471795
+annualized_volatility,0.06326947267393301
+omega_ratio,2.6278455410308902e-05
+downside_risk,0.04259585774692147
+information_ratio,-0.03321338597695183
+beta,0.4749169722844435
+alpha,-0.9973163030862476
+calmar_ratio,0.25584737841444644
+tail_ratio,1.0142867059341503
+stability_of_timeseries,0.6646059008118853
+max_drawdown,0.09261047963663795
+max_drawdown_period,"(Timestamp('2021-03-10 00:30:00+0800', tz='pytz.FixedOffset(480)'), Timestamp('2021-03-11 09:45:00+0800', tz='pytz.FixedOffset(480)'))"
+max_drawdown_duration,1 days 09:15:00
+sqn,1.2362292660959795

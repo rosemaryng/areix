@@ -43,52 +43,32 @@ def computeRSI(data, time_window):
     rsi = 100 - 100/(1+rs)
     return rsi
 
-def stochastic(data, k_window, d_window, window):
-    
-    # input to function is one column from df
-    # containing closing price or whatever value we want to extract K and D from
-    
-    min_val  = data.rolling(window=window, center=False).min()
-    max_val = data.rolling(window=window, center=False).max()
-    
-    stoch = ( (data - min_val) / (max_val - min_val) ) * 100
-    
-    K = stoch.rolling(window=k_window, center=False).mean() 
-    #K = stoch
-    
-    D = K.rolling(window=d_window, center=False).mean() 
-
-    return K, D
-
 # DataFeed
 def update_df(df):
-    # upper, lower = bollinger_band(df, 20, 1.5)
+    upper, lower = bollinger_band(df, 20, 1.5)
 
-    # df['ma10'] = df.close.rolling(10).mean()
-    # df['ma20'] = df.close.rolling(20).mean()
-    # df['ma50'] = df.close.rolling(50).mean()
-    # df['ma100'] = df.close.rolling(100).mean()
+    df['ma10'] = df.close.rolling(10).mean()
+    df['ma20'] = df.close.rolling(20).mean()
+    df['ma50'] = df.close.rolling(50).mean()
+    df['ma100'] = df.close.rolling(100).mean()
 
-    # df['x_ma10'] = (df.close - df.ma10) / df.close
-    # df['x_ma20'] = (df.close - df.ma20) / df.close
-    # df['x_ma50'] = (df.close - df.ma50) / df.close
-    # df['x_ma100'] = (df.close - df.ma100) / df.close
+    df['x_ma10'] = (df.close - df.ma10) / df.close
+    df['x_ma20'] = (df.close - df.ma20) / df.close
+    df['x_ma50'] = (df.close - df.ma50) / df.close
+    df['x_ma100'] = (df.close - df.ma100) / df.close
 
-    # df['x_delta_10'] = (df.ma10 - df.ma20) / df.close
-    # df['x_delta_20'] = (df.ma20 - df.ma50) / df.close
-    # df['x_delta_50'] = (df.ma50 - df.ma100) / df.close
+    df['x_delta_10'] = (df.ma10 - df.ma20) / df.close
+    df['x_delta_20'] = (df.ma20 - df.ma50) / df.close
+    df['x_delta_50'] = (df.ma50 - df.ma100) / df.close
 
-    # df['x_mom'] = df.close.pct_change(periods=2)
-    # df['x_bb_upper'] = (upper - df.close) / df.close
-    # df['x_bb_lower'] = (lower - df.close) / df.close
-    # df['x_bb_width'] = (upper - lower) / df.close
+    df['x_mom'] = df.close.pct_change(periods=2)
+    df['x_bb_upper'] = (upper - df.close) / df.close
+    df['x_bb_lower'] = (lower - df.close) / df.close
+    df['x_bb_width'] = (upper - lower) / df.close
 
-    # StochRSI update method
-    df['RSI'] = computeRSI(df.close, 14)
-    df['K'], df['D'] = stochastic(df['RSI'], 3, 3, 14)
     return df
 
-def get_X(data):
+ def get_X(data):
     return data.filter(like='x').values
 
 def get_y(data):
@@ -109,8 +89,6 @@ def get_clean_Xy(df):
     X = X[~isnan]
     y = y[~isnan]
     return X, y
-
-
 
 
 class MLStrategy(aio.Strategy):
@@ -157,10 +135,6 @@ class MLStrategy(aio.Strategy):
         # y is the -1/0/1
         X, y = get_clean_Xy(training_set)
 
-        print("X")
-        print(X)
-        print("y")
-        print(y)
         self.clf.fit(X, y)
 
         self.y_pred = []
